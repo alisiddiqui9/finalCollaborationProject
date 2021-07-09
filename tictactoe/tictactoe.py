@@ -2,6 +2,7 @@
 # Final Collaborative Project
 
 # Ali Siddiqui
+# Owen Lin
 
 
 
@@ -21,7 +22,6 @@
 
 import random
 
-
 def drawBoard(board):
     # This function prints out the board that it was passed.
 
@@ -39,44 +39,9 @@ def drawBoard(board):
     print('   |   |')
 
 
-def inputPlayerName():
-    # Lets the player type which letter they want to be.
-    # Returns a list with the player's letter as the first item, and the computer's letter as the second.
-    print('ENTER Player 1 name here: ')
-    playerName1 = input()
-    print()
-    print('ENTER Player 2 name here: ')
-    playerName2 = input()
-    return playerName1, playerName2
-
-def inputPlayerLetter():
-    # Lets the player type which letter they want to be.
-    # Returns a list with the player's letter as the first item, and the computer's letter as the second.
-    letter = ''
-    while not (letter == 'X' or letter == 'O'):
-        print('Choose X or O?')
-        letter = input().upper()
-
-    # the first element in the tuple is the player1's letter, the second is player2's letter.
-    if letter == 'X':
-        return ['X', 'O']
-    else:
-        return ['O', 'X']
-
-def whoGoesFirst(playerName1, playerName2):
-    # Randomly choose the player who goes first.
-    if random.randint(0, 1) == 0:
-        return playerName1
-    else:
-        return playerName2
 
 
-def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
-    print()
-    print('GAME OVER')
-    print('ENTER yes, to restart the game (yes or no)')
-    return input().lower().startswith('y')
+
 
 
 def makeMove(board, letter, move):
@@ -158,9 +123,64 @@ while True:
     # Reset the board
     theBoard = [' '] * 10
 
-    playerLetter1, playerLetter2 = inputPlayerLetter()
-    playerName1, playerName2 = inputPlayerName()
-    turn = whoGoesFirst(playerName1, playerName2 )
+    class Player:
+        def inputPlayerName1(playerName1):
+            # Lets the player type which letter they want to be.
+            # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+            print('ENTER Player 1 name here: ')
+            playerName1 = input()
+            print()
+            return playerName1
+
+        def inputPlayerName2(playerName2):
+            # Lets the player type which letter they want to be.
+            # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+            print('ENTER Player 2 name here: ')
+            playerName2 = input()
+            return playerName2
+
+        def playAgain(self):
+            # This function returns True if the player wants to play again, otherwise it returns False.
+            print()
+            print('GAME OVER')
+            print('ENTER yes, to restart the game (yes or no)')
+            return input().lower().startswith('y')
+
+    class Game:
+        def inputPlayerLetter(letter):
+            # Lets the player type which letter they want to be.
+            # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+            letter = ''
+            while not (letter == 'X' or letter == 'O'):
+                print('Player 1: Choose X or O?')
+                letter = input().upper()
+
+            # the first element in the tuple is the player1's letter, the second is player2's letter.
+            if letter == 'X':
+                return ['X', 'O']
+            else:
+                return ['O', 'X']
+
+        def whoGoesFirst(whoIsFirst):
+            # Randomly choose the player who goes first.
+            whoIsFirst = random.randint(0, 1)
+
+    user = Player()
+    game = Game()
+    playerLetter1, playerLetter2 = game.inputPlayerLetter()
+
+    playerName1 = user.inputPlayerName1()
+    playerName2 = user.inputPlayerName2()
+
+    whoIsFirst = ''
+    turn = game.whoGoesFirst()
+
+    if turn == 0:
+        turn = playerName1
+    else:
+        turn = playerName2
+
+
     print('' + turn + ' will go first.')
 
 
@@ -197,8 +217,12 @@ while True:
 
             if isWinner(theBoard, playerLetter2):
                 drawBoard(theBoard)
-                print('' + playerName1 + ' has won!')
+                print('' + playerName2 + ' has won the game! 3!')
                 gameIsPlaying = False
+            elif isWinner(theBoard, playerLetter1):
+                drawBoard(theBoard)
+                print('' + playerName1 + ' has won the game! 4!')
+
             else:
                 if isBoardFull(theBoard):
                     drawBoard(theBoard)
@@ -207,5 +231,5 @@ while True:
                 else:
                     turn = playerName1
 
-    if not playAgain():
+    if not user.playAgain():
         break
