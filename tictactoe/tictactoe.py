@@ -1,8 +1,10 @@
 
-# Final Collaborative Project
+# Final Collaborative Project (CS-043)
 
-# Ali Siddiqui
-# Owen Lin
+# Created by:
+#   Ali Siddiqui
+#   Owen Lin
+
 
 
 
@@ -15,7 +17,7 @@
 
 
 
-# Design: (we can only do this part when we are done)
+# Design:
 
 
 # HELP WITH "TIE" IT DOESNT WORK
@@ -197,19 +199,18 @@ while True:
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
-                elif screen.isWinner(theBoard, playerLetter1):
+            if screen.isWinner(theBoard, playerLetter1):
+                screen.drawBoard(theBoard)
+                print('' + playerName1 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isWinner(theBoard, playerLetter2):
+                screen.drawBoard(theBoard)
+                print('' + playerName2 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isBoardFull(theBoard):
                     screen.drawBoard(theBoard)
-                    print('' + playerName1 + ' has won the game!')
-                    gameIsPlaying = False
-                elif screen.isWinner(theBoard, playerLetter2):
-                    screen.drawBoard(theBoard)
-                    print('' + playerName2 + ' has won the game!')
-                    gameIsPlaying = False
-                else:
-                    if screen.isBoardFull(theBoard):
-                        screen.drawBoard(theBoard)
-                        print('The game is a tie!')
-                        break
+                    print('The game is a tie!')
+                    break
             else:
                 turn = playerName2
 
@@ -225,19 +226,18 @@ while True:
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
-                elif screen.isWinner(theBoard, playerLetter2):
+            if screen.isWinner(theBoard, playerLetter1):
+                screen.drawBoard(theBoard)
+                print('' + playerName1 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isWinner(theBoard, playerLetter2):
+                screen.drawBoard(theBoard)
+                print('' + playerName2 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isBoardFull(theBoard):
                     screen.drawBoard(theBoard)
-                    print('' + playerName2 + ' has won!')
-                    gameIsPlaying = False
-                elif screen.isWinner(theBoard, playerLetter1):
-                    screen.drawBoard(theBoard)
-                    print('' + playerName1 + ' has won!')
-                    gameIsPlaying = False
-                else:
-                    if screen.isBoardFull(theBoard):
-                        screen.drawBoard(theBoard)
-                        print('The game is a tie!')
-                        break
+                    print('The game is a tie!')
+                    break
             else:
                 turn = playerName1
 
