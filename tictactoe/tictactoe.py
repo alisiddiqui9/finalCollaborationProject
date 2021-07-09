@@ -1,8 +1,10 @@
 
-# Final Collaborative Project
+# Final Collaborative Project (CS-043)
 
-# Ali Siddiqui
-# Owen Lin
+# Created by:
+#   Ali Siddiqui
+#   Owen Lin
+
 
 
 
@@ -15,7 +17,7 @@
 
 
 
-# Design: (we can only do this part when we are done)
+# Design:
 
 
 # HELP WITH "TIE" IT DOESNT WORK
@@ -75,7 +77,6 @@ class Game:
             turn = playerName2
             return turn
 
-
 class Board:
     def drawBoard(self, board):
         # This function prints out the board that it was passed.
@@ -99,6 +100,16 @@ class Board:
     def __getitem__(self, items):
         print(type(items), items)
 
+
+    def getBoardCopy(self, board):
+        # Make a duplicate of the board list and return it the duplicate.
+        dupeBoard = []
+
+        for i in board:
+            dupeBoard.append(i)
+
+        return dupeBoard
+
     def isWinner(self, bo, le):
         # Given a board and a player's letter, this function returns True if that player has won.
         # We use bo instead of board and le instead of letter so we don't have to type as much.
@@ -110,15 +121,6 @@ class Board:
                 (bo[9] == le and bo[6] == le and bo[3] == le) or  # down the right side
                 (bo[7] == le and bo[5] == le and bo[3] == le) or  # diagonal
                 (bo[9] == le and bo[5] == le and bo[1] == le))  # diagonal
-
-    def getBoardCopy(self, board):
-        # Make a duplicate of the board list and return it the duplicate.
-        dupeBoard = []
-
-        for i in board:
-            dupeBoard.append(i)
-
-        return dupeBoard
 
     def isSpaceFree(self, board, move):
         # Return true if the passed move is free on the passed board.
@@ -171,10 +173,6 @@ while True:
     playerName1 = user.inputPlayerName1()
     playerName2 = user.inputPlayerName2()
 
-    whoIsFirst = ''
-    turn = ''
-    turn = game.whoGoesFirst1()
-    game.whoGoesFirst2()
 
     turn = random.randint(0,1)
     if turn == 0:
@@ -196,21 +194,25 @@ while True:
             move = run.getPlayer1Move(theBoard)
             screen.makeMove(theBoard, playerLetter1, move)
 
+            if screen.isBoardFull(theBoard):
+                if screen.isWinner(theBoard, playerLetter1) == False and screen.isWinner(theBoard, playerLetter2) == False:
+                    screen.drawBoard(theBoard)
+                    print('The game is a tie!')
+                    break
             if screen.isWinner(theBoard, playerLetter1):
                 screen.drawBoard(theBoard)
-                print('' + playerName1 + ' has won the game! 1')
+                print('' + playerName1 + ' has won the game!')
                 gameIsPlaying = False
             elif screen.isWinner(theBoard, playerLetter2):
                 screen.drawBoard(theBoard)
-                print('' + playerName2 + ' has won the game! 2')
+                print('' + playerName2 + ' has won the game!')
                 gameIsPlaying = False
-            else:
-                if screen.isBoardFull(theBoard):
+            elif screen.isBoardFull(theBoard):
                     screen.drawBoard(theBoard)
-                    print('The game is a tie!1')
+                    print('The game is a tie!')
                     break
-                else:
-                    turn = playerName2
+            else:
+                turn = playerName2
 
         else:
             # Player2's turn.
@@ -218,21 +220,26 @@ while True:
             move = run.getPlayer2Move(theBoard)
             screen.makeMove(theBoard, playerLetter2, move)
 
-            if screen.isWinner(theBoard, playerLetter2):
-                screen.drawBoard(theBoard)
-                print('' + playerName2 + ' has won the game! 3')
-                gameIsPlaying = False
-            elif screen.isWinner(theBoard, playerLetter1):
-                screen.drawBoard(theBoard)
-                print('' + playerName1 + ' has won the game! 4')
-
-            else:
-                if screen.isBoardFull(theBoard):
+    # why does this first line not work?
+            if screen.isBoardFull(theBoard):
+                if screen.isWinner(theBoard, playerLetter1) == False and screen.isWinner(theBoard, playerLetter2) == False:
                     screen.drawBoard(theBoard)
-                    print('The game is a tie!2')
+                    print('The game is a tie!')
                     break
-                else:
-                    turn = playerName1
+            if screen.isWinner(theBoard, playerLetter1):
+                screen.drawBoard(theBoard)
+                print('' + playerName1 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isWinner(theBoard, playerLetter2):
+                screen.drawBoard(theBoard)
+                print('' + playerName2 + ' has won the game!')
+                gameIsPlaying = False
+            elif screen.isBoardFull(theBoard):
+                    screen.drawBoard(theBoard)
+                    print('The game is a tie!')
+                    break
+            else:
+                turn = playerName1
 
     if not user.playAgain():
         break
