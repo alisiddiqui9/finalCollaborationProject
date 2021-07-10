@@ -1,14 +1,12 @@
 
 # Final Collaborative Project (CS-043)
+# tictactoe.py
+
+
 
 # Created by:
 #   Ali Siddiqui
 #   Owen Lin
-
-
-
-
-# tictactoe.py
 
 
 
@@ -21,7 +19,6 @@
 
 
 
-
 import random
 import time
 
@@ -29,23 +26,28 @@ class Player:
     def inputPlayerName1(playerName1):
         # Lets the player type which letter they want to be.
         # Returns a list with the player's letter as the first item, and the computer's letter as the second.
-        print('ENTER Player 1 name here: ')
-        playerName1 = input()
         print()
+        time.sleep(0.2)
+        print('ENTER Player 1 name here: ', end = '')
+        playerName1 = input()
+
         return playerName1
 
     def inputPlayerName2(playerName2):
         # Lets the player type which letter they want to be.
         # Returns a list with the player's letter as the first item, and the computer's letter as the second.
-        print('ENTER Player 2 name here: ')
+        print()
+        time.sleep(0.2)
+        print('ENTER Player 2 name here: ', end = '')
         playerName2 = input()
+        print()
         return playerName2
 
     def playAgain(self):
         # This function returns True if the player wants to play again, otherwise it returns False.
         print()
         print('GAME OVER')
-        print('ENTER yes, to restart the game (yes or no)')
+        print('ENTER yes, to restart the game (yes or no): ', end = '')
         return input().lower().startswith('y')
 
 
@@ -55,7 +57,10 @@ class Game:
         # Returns a list with the player's letter as the first item, and the computer's letter as the second.
         letter = ''
         while not (letter == 'X' or letter == 'O'):
+            print()
+            time.sleep(0.2)
             print('Player 1: Choose X or O?')
+            print('ENTER here: ', end = '')
             letter = input().upper()
 
         # the first element in the tuple is the player1's letter, the second is player2's letter.
@@ -64,7 +69,7 @@ class Game:
         else:
             return ['O', 'X']
 
-    def whoGoesFirst1(turn):
+    def whoGoesFirs12(turn):
         # Randomly choose the player who goes first.
         if turn == 0:
             turn = playerName1
@@ -75,7 +80,7 @@ class Game:
             turn = playerName2
             return turn
 
-class Board:
+class TicTacToe:
     def drawBoard(self, board):
         # This function prints out the board that it was passed.
 
@@ -137,7 +142,9 @@ class RunGame:
         # Let the player1 type in his move.
         move1 = ' '
         while move1 not in '1 2 3 4 5 6 7 8 9'.split() or not screen.isSpaceFree(board, int(move1)):
-            print('' + playerName1 + ', what is your next move? (1-9)')
+            print()
+            print('' + playerName1 + ', what is your move? (1-9)')
+            print('ENTER here: ', end = '')
             move1 = input()
         return int(move1)
 
@@ -145,7 +152,9 @@ class RunGame:
         # Let the player2 type in his move.
         move2 = ' '
         while move2 not in '1 2 3 4 5 6 7 8 9'.split() or not screen.isSpaceFree(board, int(move2)):
+            print()
             print('' + playerName2 + ', what is your next move? (1-9)')
+            print('ENTER here: ', end = '')
             move2 = input()
         return int(move2)
 
@@ -165,7 +174,7 @@ while True:
     user = Player()
     game = Game()
     run = RunGame()
-    screen = Board()
+    screen = TicTacToe()
     playerLetter1, playerLetter2 = game.inputPlayerLetter()
 
     playerName1 = user.inputPlayerName1()
@@ -180,14 +189,15 @@ while True:
 
 
 
-    print('' + turn + ' will go first.')
+    print('' + turn + ' will go first')
 
-
+    time.sleep(0.5)
     gameIsPlaying = True
 
     while gameIsPlaying:
         if turn == playerName1:
             # Player1's turn.
+            print()
             screen.drawBoard(theBoard)
             move = run.getPlayer1Move(theBoard)
             screen.makeMove(theBoard, playerLetter1, move)
@@ -214,6 +224,8 @@ while True:
 
         else:
             # Player2's turn.
+            print()
+            time.sleep(0.5)
             screen.drawBoard(theBoard)
             move = run.getPlayer2Move(theBoard)
             screen.makeMove(theBoard, playerLetter2, move)
@@ -241,5 +253,3 @@ while True:
 
     if not user.playAgain():
         break
-
-        
