@@ -20,8 +20,6 @@
 # Design:
 
 
-# HELP WITH "TIE" IT DOESNT WORK
-
 
 
 import random
