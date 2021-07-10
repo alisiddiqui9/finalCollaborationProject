@@ -9,16 +9,6 @@
 #   Owen Lin
 
 
-
-
-# Requirements:
-
-
-
-# Design:
-
-
-
 import random
 import time
 
@@ -30,7 +20,9 @@ class Player:
         time.sleep(0.2)
         print('ENTER Player 1 name here: ', end = '')
         playerName1 = input()
-
+        if playerName1 == '':
+            print('ENTER Player 1 name here: ', end='')
+            playerName1 = input()
         return playerName1
 
     def inputPlayerName2(playerName2):
@@ -40,6 +32,10 @@ class Player:
         time.sleep(0.2)
         print('ENTER Player 2 name here: ', end = '')
         playerName2 = input()
+        if playerName2 == '':
+            time.sleep(0.2)
+            print('ENTER Player 2 name here: ', end='')
+            playerName2 = input()
         print()
         return playerName2
 
@@ -52,6 +48,102 @@ class Player:
 
 
 class Game:
+    def directions(self):
+        print()
+        time.sleep(0.3)
+        print('TicTacToe Directions: ')
+        print()
+        print ('\tIn this game, we have 2 players.')
+        print()
+        time.sleep(1)
+        print('\tHere is how we play TicTacToe.')
+        print()
+        time.sleep(1)
+        print('\tWhen the game begins, player 1 will choose if they want X or O.')
+        print()
+        time.sleep(1)
+        print('\tThen, the game will request for the names of the two players.')
+        print()
+        time.sleep(1)
+        print('\tThe game will randomly choose who goes first (player 1 or player 2)')
+        print()
+        print()
+        time.sleep(3)
+        print('\tThe entire objective of the game is to get THREE of your letters a consecutive row.')
+        print()
+        time.sleep(1)
+        print('\tA player can win when they have three of their letters in a straight line')
+        print()
+        time.sleep(1)
+        print('\tFor victory, your 3 letters can be horizontal, vertical, or even diagonal.')
+        print()
+        time.sleep(1)
+        print('\tThe game will run until someone wins, or when there is a tie.')
+        print()
+        time.sleep(1)
+        print('\tTies occur when there is no winner, since both players were not able to get 3 of their letters in a row...')
+        print()
+        time.sleep(1)
+        print('\tand when all of the squares of the board have been occupied with letters. ')
+        print()
+        print()
+        time.sleep(4)
+        print('\tWhen it is your turn (the game will inform you), you must try to block the other player from winning...')
+        print()
+        time.sleep(1)
+        print('\tor you must place your letter in a position that will lead yourself into victory')
+        print()
+        time.sleep(1)
+        print('\tWhen asked, in order to place your letter into the board...')
+        print()
+        time.sleep(1)
+        print('\tyou must place a number (1-9), corresponding to the square you wish to place your letter')
+        print()
+        print()
+        time.sleep(4)
+        print('''Here is an easy overview, of each number, and its corresponding square.
+                    (Numbers 1-9)
+                        
+                   TicTacToe Board
+            (TL) - 7 | (TM) - 8 | (TR) - 9
+            ------------------------------
+            (ML) - 4 | (MC) - 5 | (MR) - 6
+            ------------------------------
+            (BL) - 1 | (BM) - 2 | (BR) - 3
+            
+            ''')
+        time.sleep(4)
+        print("Here's what it means: ")
+        time.sleep(1.5)
+        print('''
+        ENTER 1 for Bottom Left (BL)
+        ENTER 2 for Bottom Middle (BM)
+        ENTER 3 for Bottom Right (BR)
+        ENTER 4 for Middle Left (ML)
+        ENTER 5 for Middle Center (MC)
+        ENTER 6 for Middle Right (MR)
+        ENTER 7 for Top Left (TL)
+        ENTER 8 for Top Middle (TM)
+        ENTER 9 for Top Right (TR)
+        ''')
+        print()
+        print()
+        time.sleep(4)
+        print('\tIf you enter a number (for the position on the board)')
+        print()
+        time.sleep(1)
+        print('\tand if the position has already been filled,')
+        print()
+        time.sleep(1)
+        print('\tthe game will ask you for a valid number, in order to insert your letter into that square.')
+        print()
+        print()
+        print()
+        time.sleep(2)
+        print('Press ENTER to continue: ', end = '')
+        input()
+        time.sleep(0.4)
+
     def inputPlayerLetter(letter):
         # Lets the player type which letter they want to be.
         # Returns a list with the player's letter as the first item, and the computer's letter as the second.
@@ -69,7 +161,7 @@ class Game:
         else:
             return ['O', 'X']
 
-    def whoGoesFirs12(turn):
+    def whoGoesFirst1(turn):
         # Randomly choose the player who goes first.
         if turn == 0:
             turn = playerName1
@@ -102,16 +194,6 @@ class TicTacToe:
 
     def __getitem__(self, items):
         print(type(items), items)
-
-
-    def getBoardCopy(self, board):
-        # Make a duplicate of the board list and return it the duplicate.
-        dupeBoard = []
-
-        for i in board:
-            dupeBoard.append(i)
-
-        return dupeBoard
 
     def isWinner(self, bo, le):
         # Given a board and a player's letter, this function returns True if that player has won.
@@ -162,23 +244,35 @@ class RunGame:
         print(type(items), items)
 
 
-
+# This is where the Game begins:
 
 print()
 print('Welcome to Tic Tac Toe!')
+print()
+time.sleep(0.2)
+
+print("Press ENTER to continue: ", end = "")
+input()
+print()
+
+user = Player()
+game = Game()
+run = RunGame()
+screen = TicTacToe()
+
+print("ENTER yes, if you want to see the instructions: ", end = "")
+if input().lower().startswith('y'):
+    game.directions()
+
+
+playerLetter1, playerLetter2 = game.inputPlayerLetter()
+
+playerName1 = user.inputPlayerName1()
+playerName2 = user.inputPlayerName2()
 
 while True:
     # Reset the board
     theBoard = [' '] * 10
-
-    user = Player()
-    game = Game()
-    run = RunGame()
-    screen = TicTacToe()
-    playerLetter1, playerLetter2 = game.inputPlayerLetter()
-
-    playerName1 = user.inputPlayerName1()
-    playerName2 = user.inputPlayerName2()
 
 
     turn = random.randint(0,1)
@@ -191,11 +285,11 @@ while True:
 
     print('' + turn + ' will go first')
 
-    time.sleep(0.5)
     gameIsPlaying = True
 
     while gameIsPlaying:
         if turn == playerName1:
+            time.sleep(0.2)
             # Player1's turn.
             print()
             screen.drawBoard(theBoard)
@@ -225,7 +319,7 @@ while True:
         else:
             # Player2's turn.
             print()
-            time.sleep(0.5)
+            time.sleep(0.2)
             screen.drawBoard(theBoard)
             move = run.getPlayer2Move(theBoard)
             screen.makeMove(theBoard, playerLetter2, move)
