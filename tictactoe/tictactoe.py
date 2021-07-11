@@ -71,15 +71,15 @@
 # Bottom Row - 1 2 3
 
 
-# Player 1 chooses either X or O to use in the game. 
-# Enter in the names of the two people playing. 
+# Player 1 chooses either X or O to use in the game.
+# Enter in the names of the two people playing.
 # A random player will be chosen to go first.
-# To put your piece in, enter a number from 1-9.  
+# To put your piece in, enter a number from 1-9.
 
-# The game will end once a player gets 3 of their pieces in a row. 
-# Those 3 pieces can be horizontal, vertical, or diagonal to make up the 3 in a row. 
-# If the grid is filled and no player has gotten 3 in a row, 
-# the game ends as a tie. 
+# The game will end once a player gets 3 of their pieces in a row.
+# Those 3 pieces can be horizontal, vertical, or diagonal to make up the 3 in a row.
+# If the grid is filled and no player has gotten 3 in a row,
+# the game ends as a tie.
 # If you want to play again, simply enter “yes” when asked, and the game will restart
 
 
@@ -87,71 +87,71 @@
 
 # The Design of the Program:
 
-# The TicTacToe two-player game has 4 classes total. 
-# The classes are referred to as; class Player, class Game, class TicTacToe, 
+# The TicTacToe two-player game has 4 classes total.
+# The classes are referred to as; class Player, class Game, class TicTacToe,
 # and class RunGame. Since we have 4 classes, we have 4 objects.
 
 # The objects are created when the program first runs. T
-# he objects are; user, game, run, and screen. 
-# Classes are known as “cookie cutters” for objects. 
-# So our 4 classes form our four objects. 
-# Since we have objects, we can implement object-oriented programming. 
-# Object oriented programming has the potential to make complex source codes easier 
-# in more complex projects. 
+# he objects are; user, game, run, and screen.
+# Classes are known as “cookie cutters” for objects.
+# So our 4 classes form our four objects.
+# Since we have objects, we can implement object-oriented programming.
+# Object oriented programming has the potential to make complex source codes easier
+# in more complex projects.
 
 # We created our 4 classes based on the similarities between the user-defined functions.
 # For example, functions inside of the class Player; all have something to do with the user.
 # It includes a function to ask names of both players, and asks the players if they
-# want to restart. 
-# The next class is class Game, which includes all user-defined functions related 
-# to the actual TicTacToe game. 
+# want to restart.
+# The next class is class Game, which includes all user-defined functions related
+# to the actual TicTacToe game.
 
-# This is where player 1 chooses if they want to be X or O, and this is where the 
-# source code assigns player 2’s letter (based on Player 1’s response). 
+# This is where player 1 chooses if they want to be X or O, and this is where the
+# source code assigns player 2’s letter (based on Player 1’s response).
 # Player 2 becomes X, if player 1 chooses O. Player 2 becomes O, if player 1 chooses X.
-# Class Game also includes the directions() user-defined function. 
-# When this function is called (when the user asks for it) it gives the user 
-# a great-detailed explanation of the game. 
+# Class Game also includes the directions() user-defined function.
+# When this function is called (when the user asks for it) it gives the user
+# a great-detailed explanation of the game.
 
-# It includes how the game functions, how to insert your letter into 
-# the TicTacToe board, and the main objectives of the TicTacToe game. 
+# It includes how the game functions, how to insert your letter into
+# the TicTacToe board, and the main objectives of the TicTacToe game.
 # This function is useful for all players
-# Also, within the class Game, we have the whoGoesFirst1() functions that will 
+# Also, within the class Game, we have the whoGoesFirst1() functions that will
 # randomly decide which player (1 or 2) will go first when the game runs.
 
-# The next class is, class TicTacToe. This is where many of the functions related to 
-# TicTacToe are located. 
-# In this class, we have the drawBoard() user-defined function, 
-# which creates the board for the game. 
-# This is the same board the players see when the game is running, 
+# The next class is, class TicTacToe. This is where many of the functions related to
+# TicTacToe are located.
+# In this class, we have the drawBoard() user-defined function,
+# which creates the board for the game.
+# This is the same board the players see when the game is running,
 # and is the most important part of the game (since it shows where the letters are in the board).
 
-# It also has the makeMove() user-defined function,which will place the user’s letter 
-# onto the board, at their desired place. 
-# Within the class TicTacToe, we have the isWinner() user-defined function, 
-# which will constantly check after each player’s turn, to see if they have achieved 
+# It also has the makeMove() user-defined function,which will place the user’s letter
+# onto the board, at their desired place.
+# Within the class TicTacToe, we have the isWinner() user-defined function,
+# which will constantly check after each player’s turn, to see if they have achieved
 # a three in a row.
-# We also have the isSpaceFree() user-defined function, which will check if the 
-# place the player wants to place their letter has already been taken. 
+# We also have the isSpaceFree() user-defined function, which will check if the
+# place the player wants to place their letter has already been taken.
 # If the space is free, then the game will allow the letter to be placed there.
 
-# Finally, within the class TicTacToe, we have the isBoardFull() user-defined 
-# function, which will check after each player’s turn, to see if the game is 
+# Finally, within the class TicTacToe, we have the isBoardFull() user-defined
+# function, which will check after each player’s turn, to see if the game is
 # considered “over” if the players cannot add more letters onto the board.
 
 # In our last class within the source code, we have the class RunGame.
-# This class mainly has user-defined functions to get the player’s move, 
-# and checks if the inserted string is a number that represents the position 
-# on the board. 
+# This class mainly has user-defined functions to get the player’s move,
+# and checks if the inserted string is a number that represents the position
+# on the board.
 
 # These user-defined functions are getPlayer1Move() and getPlayer2Move().
-# After this, we created objects for each class, 
-# in order to use their user-defined functions. 
-# We create an object called user for class Player.  
-# An object called game for class Game. 
+# After this, we created objects for each class,
+# in order to use their user-defined functions.
+# We create an object called user for class Player.
+# An object called game for class Game.
 # An object called run for class RunGame. And an object called screen for class TicTacToe.
-# Then we use object-oriented programming 
-# when we call these functions inside of these classes, 
+# Then we use object-oriented programming
+# when we call these functions inside of these classes,
 # and the game runs successfully without bugs.
 
 
@@ -197,6 +197,7 @@ class Player:
 
 class Game:
     def directions(self):
+        print()
         print()
         time.sleep(0.3)
         print('TicTacToe Directions: ')
@@ -430,7 +431,7 @@ while True:
         turn = playerName2
 
 
-
+    print()
     print('' + turn + ' will go first')
 
     gameIsPlaying = True
