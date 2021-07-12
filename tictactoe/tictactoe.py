@@ -218,7 +218,10 @@ class Game:
         print()
         print()
         time.sleep(3)
-        print('\tThe entire objective of the game is to get THREE of your letters a consecutive row.')
+        print('\tThe entire objective of the game is to')
+        print()
+        time.sleep(1)
+        print('\tget THREE of your letters a consecutive row.')
         print()
         time.sleep(1)
         print('\tA player can win when they have three of their letters in a straight line')
@@ -230,14 +233,20 @@ class Game:
         print('\tThe game will run until someone wins, or when there is a tie.')
         print()
         time.sleep(1)
-        print('\tTies occur when there is no winner, since both players were not able to get 3 of their letters in a row...')
+        print('\tTies occur when there is no winner, since both players,')
+        print()
+        time.sleep(1)
+        print('\t were not able to get 3 of their letters in a row...')
         print()
         time.sleep(1)
         print('\tand when all of the squares of the board have been occupied with letters. ')
         print()
         print()
         time.sleep(4)
-        print('\tWhen it is your turn (the game will inform you), you must try to block the other player from winning...')
+        print('\tWhen it is your turn (the game will inform you)')
+        print()
+        time.sleep(1)
+        print('\tyou must try to block the other player from winning...')
         print()
         time.sleep(1)
         print('\tor you must place your letter in a position that will lead yourself into victory')
@@ -496,5 +505,3 @@ while True:
 
     if not user.playAgain():
         break
-
-        
