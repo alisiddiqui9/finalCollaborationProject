@@ -13,7 +13,7 @@
 # Then, the game will request for the names of the two players.
 # The game will randomly choose who goes first (player 1 or player 2).
 
-# The entire objective of the game is to get THREE of your letters a consecutive row.
+# The entire objective of the game is to get THREE of your letters in a consecutive row.
 # A player can win when they have three of their letters in a straight line.
 # For victory, your 3 letters can be horizontal, vertical, or even diagonal.
 # The game will run until someone wins, or when there is a tie.
@@ -221,7 +221,7 @@ class Game:
         print('\tThe entire objective of the game is to')
         print()
         time.sleep(1)
-        print('\tget THREE of your letters a consecutive row.')
+        print('\tget THREE of your letters in a consecutive row.')
         print()
         time.sleep(1)
         print('\tA player can win when they have three of their letters in a straight line')
