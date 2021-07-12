@@ -157,13 +157,17 @@
 
 
 
-import random
-import time
+import random # used to decide, who goes first
+import time # allows us to make the game seem smooth, by making each step separate from the previous one.
 
+
+# functions inside of the class Player; all have something to do with the user.
+# It includes a function to ask names of both players, and asks the players if they
+# want to restart.
 class Player:
-    def inputPlayerName1(playerName1):
-        # Lets the player type which letter they want to be.
-        # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+    def inputPlayerName1(playerName1): # asks for player 1 name
+        # Lets player 1 type their name
+        # Returns the player's name
         print()
         time.sleep(0.2)
         print('ENTER Player 1 name here: ', end = '')
@@ -173,9 +177,9 @@ class Player:
             playerName1 = input()
         return playerName1
 
-    def inputPlayerName2(playerName2):
-        # Lets the player type which letter they want to be.
-        # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+    def inputPlayerName2(playerName2): # asks for player 2 name
+        # Lets player 2 type their name
+        # Returns the player's name
         print()
         time.sleep(0.2)
         print('ENTER Player 2 name here: ', end = '')
@@ -187,7 +191,7 @@ class Player:
         print()
         return playerName2
 
-    def playAgain(self):
+    def playAgain(self): # This function is used to see, if the game needs to restart.
         # This function returns True if the player wants to play again, otherwise it returns False.
         print()
         print('GAME OVER')
@@ -195,8 +199,10 @@ class Player:
         return input().lower().startswith('y')
 
 
+# The next class is class Game, which includes all user-defined functions related
+# to the actual TicTacToe game.
 class Game:
-    def directions(self):
+    def directions(self): # This function runs, if the player wants the directions, when asked
         print()
         print()
         time.sleep(0.3)
@@ -270,6 +276,7 @@ class Game:
             (BL) - 1 | (BM) - 2 | (BR) - 3
             
             ''')
+        # this shows a quick overview of each tile's corresponding number
         time.sleep(4)
         print("Here's what it means: ")
         time.sleep(1.5)
@@ -303,8 +310,8 @@ class Game:
         time.sleep(0.4)
 
     def inputPlayerLetter(letter):
-        # Lets the player type which letter they want to be.
-        # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+        # Lets the player 1 type which letter they want to be.
+        # Returns a list with the player 1's letter as the first item, and the player 2's letter as the second.
         letter = ''
         while not (letter == 'X' or letter == 'O'):
             print()
@@ -319,19 +326,24 @@ class Game:
         else:
             return ['O', 'X']
 
-    def whoGoesFirst1(turn):
+    def whoGoesFirst1(turn): # when the random.randint() function returns 0, then player 1 goes first.
         # Randomly choose the player who goes first.
         if turn == 0:
             turn = playerName1
             return turn
 
-    def whoGoesFirst2(turn):
+    def whoGoesFirst2(turn): # when the random.randint() function returns 1, then player 2 goes first.
         if turn == 1:
             turn = playerName2
             return turn
 
+# The next class is, class TicTacToe.
+# This is where many of the functions related to the TicTacToe board are located.
 class TicTacToe:
     def drawBoard(self, board):
+        # We have the drawBoard() user-defined function,
+        # which creates the board for the game.
+
         # This function prints out the board that it was passed.
 
         # "board" is a list of 10 strings representing the board (ignore index 0)
@@ -347,11 +359,22 @@ class TicTacToe:
         print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
         print('   |   |')
 
+
+    # It also has the makeMove() user-defined function,
+    # which will place the user’s letter
+    # onto the board, at their desired place.
+
     def makeMove(self, board, letter, move):
         board[move] = letter
 
+    # This function is used to create list items inside of user-defined function inside a class
     def __getitem__(self, items):
         print(type(items), items)
+
+
+    # We have the isWinner() user-defined function,
+    # which will constantly check after each player’s turn, to see if they have achieved
+    # a three in a row.
 
     def isWinner(self, bo, le):
         # Given a board and a player's letter, this function returns True if that player has won.
@@ -365,9 +388,17 @@ class TicTacToe:
                 (bo[7] == le and bo[5] == le and bo[3] == le) or  # diagonal
                 (bo[9] == le and bo[5] == le and bo[1] == le))  # diagonal
 
+
+    # isSpaceFree() user-defined function, will check if the
+    # place the player wants to put their letter, has already been taken.
+
     def isSpaceFree(self, board, move):
         # Return true if the passed move is free on the passed board.
         return board[move] == ' '
+
+    # The isBoardFull() user-defined function,
+    # will check after each player’s turn, to see if the game is
+    # considered “over” if the players cannot add more letters onto the board.
 
     def isBoardFull(self, board):
         # Return True if every space on the board has been taken. Otherwise return False.
@@ -376,8 +407,15 @@ class TicTacToe:
                 return False
         return True
 
+# We have the class RunGame.
+# This class mainly has user-defined functions to get the player’s move,
+# and checks if the inserted string is a number that represents the position
+# on the board.
 
 class RunGame:
+    # These user-defined functions are getPlayer1Move() and getPlayer2Move().
+    # getPlayerMove1() makes sure that player 1 inputs a valid number that the
+    # game can use for the tictactoe board
     def getPlayer1Move(self, board):
         # Let the player1 type in his move.
         move1 = ' '
@@ -388,6 +426,8 @@ class RunGame:
             move1 = input()
         return int(move1)
 
+    # getPlayerMove2() makes sure that player 2 inputs a valid number that the
+    # game can use for the tictactoe board
     def getPlayer2Move(self, board):
         # Let the player2 type in his move.
         move2 = ' '
@@ -398,8 +438,11 @@ class RunGame:
             move2 = input()
         return int(move2)
 
+    # This function is used to create list items inside of user-defined function inside a class
     def __getitem__(self, items):
         print(type(items), items)
+
+
 
 
 # This is where the Game begins:
@@ -409,68 +452,85 @@ print('Welcome to Tic Tac Toe!')
 print()
 time.sleep(0.2)
 
-print("Press ENTER to continue: ", end = "")
+print("Press ENTER to continue: ", end = "") # waits for 'enter' button to continue
 input()
 print()
 
-user = Player()
-game = Game()
-run = RunGame()
-screen = TicTacToe()
+# The classes are referred to as; class Player, class Game, class TicTacToe,
+# and class RunGame. Since we have 4 classes, we have 4 objects
+
+# We created our 4 classes based on the similarities between the user-defined functions.
+
+user = Player() # has functions related to user
+game = Game() # has functions to tic tac toe game
+screen = TicTacToe() # has functions related to the tic tac toe board
+run = RunGame()  # functions related to getting the player's move
+
 
 print("ENTER yes, if you want to see the instructions: ", end = "")
-if input().lower().startswith('y'):
+if input().lower().startswith('y'): # if user types in anything that begins with 'y', they get the instructions
     game.directions()
 
 
+# using object game, call the inputPlayerLetter() function (and set it equal to playerLetter1 and playerLetter2)
 playerLetter1, playerLetter2 = game.inputPlayerLetter()
 
 playerName1 = user.inputPlayerName1()
 playerName2 = user.inputPlayerName2()
 
+# this loop runs until the player decides to quit the game
 while True:
     # Reset the board
+    # Creates blank board
     theBoard = [' '] * 10
 
-
+    # the game randomly decides who goes first
     turn = random.randint(0,1)
     if turn == 0:
         turn = playerName1
     else:
         turn = playerName2
 
-
+    # the game tells the players who will be going first
     print()
     print('' + turn + ' will go first')
 
     gameIsPlaying = True
 
+    # this runs after the game decides who is going first
+    # loops through until there is a winner, or a tie.
     while gameIsPlaying:
-        if turn == playerName1:
+        if turn == playerName1: # every time it is playerName1's turn, do this:
             time.sleep(0.2)
             # Player1's turn.
             print()
-            screen.drawBoard(theBoard)
-            move = run.getPlayer1Move(theBoard)
-            screen.makeMove(theBoard, playerLetter1, move)
+            screen.drawBoard(theBoard) # print the board
+            move = run.getPlayer1Move(theBoard) # ask the player for their move
+            screen.makeMove(theBoard, playerLetter1, move) # then print the board with their move
 
+            # check if the board is full (no more moves can be made now)
             if screen.isBoardFull(theBoard):
+                # if no one is the winner, and the board is full, then we have a tie
                 if screen.isWinner(theBoard, playerLetter1) == False and screen.isWinner(theBoard, playerLetter2) == False:
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
+            # if player1 got 3 in a row, tell the players that player 1 has won
             if screen.isWinner(theBoard, playerLetter1):
                 screen.drawBoard(theBoard)
                 print('' + playerName1 + ' has won the game!')
                 gameIsPlaying = False
+            # if player 1 did not win, and if player2 got 3 in a row, tell the players that player 2 has won
             elif screen.isWinner(theBoard, playerLetter2):
                 screen.drawBoard(theBoard)
                 print('' + playerName2 + ' has won the game!')
                 gameIsPlaying = False
+            # if no one has won, then we have a tie
             elif screen.isBoardFull(theBoard):
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
+            # if no one won, and the board is NOT full, then move to player2's turn
             else:
                 turn = playerName2
 
@@ -478,30 +538,47 @@ while True:
             # Player2's turn.
             print()
             time.sleep(0.2)
+            # draw the updated board for the game
             screen.drawBoard(theBoard)
+            # run the function that will ask for the player's move
             move = run.getPlayer2Move(theBoard)
+            # update the screen, and show player2's letter and their recent move on the board
             screen.makeMove(theBoard, playerLetter2, move)
 
-    # why does this first line not work?
+            # check if the board is full (no more moves can be made)
             if screen.isBoardFull(theBoard):
+                # if no one is a winner, then we have a tie
                 if screen.isWinner(theBoard, playerLetter1) == False and screen.isWinner(theBoard, playerLetter2) == False:
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
+            # if is.Winner() function returns true for player1's letter,
+            # then tell the players that player 1 has won
             if screen.isWinner(theBoard, playerLetter1):
                 screen.drawBoard(theBoard)
                 print('' + playerName1 + ' has won the game!')
                 gameIsPlaying = False
+            # if player 1 did not win, and
+            # if is.Winner() function returns true for player2's letter,
+            # then tell the players that player 2 has won
             elif screen.isWinner(theBoard, playerLetter2):
                 screen.drawBoard(theBoard)
                 print('' + playerName2 + ' has won the game!')
                 gameIsPlaying = False
+            # if no one has won, and the board is full, tell the players that there was a tie
             elif screen.isBoardFull(theBoard):
                     screen.drawBoard(theBoard)
                     print('The game is a tie!')
                     break
+            # if no one won, and if the board is NOT full, player 1 has their turn now
             else:
                 turn = playerName1
 
+    # When the game ends in a winner or a tie, run the playAgain() function
+    # If the function returns false, then we break out of the 'While True' loop,
+    # and the game is over.
+    
+    # If playAgain() returns True, then the program loops back to the beginning of
+    # of the 'While True' loop, and restarts the game to be played again.
     if not user.playAgain():
         break
