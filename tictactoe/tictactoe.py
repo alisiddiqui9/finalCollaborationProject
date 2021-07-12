@@ -236,7 +236,7 @@ class Game:
         print('\tTies occur when there is no winner, since both players,')
         print()
         time.sleep(1)
-        print('\t were not able to get 3 of their letters in a row...')
+        print('\twere not able to get 3 of their letters in a row...')
         print()
         time.sleep(1)
         print('\tand when all of the squares of the board have been occupied with letters. ')
